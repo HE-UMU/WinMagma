@@ -1,0 +1,101 @@
+Native builds using Visual C++
+==============================
+
+The native builds using Visual C++ have a VC-* prefix.
+
+Requirement details
+-------------------
+
+Prerequisites
+=============
+
+To install OpenSSL, you will need:
+
+ * A "make" implementation
+ * Perl 5 with core modules (please read [NOTES-PERL.md](NOTES-PERL.md))
+ * The Perl module `Text::Template` (please read [NOTES-PERL.md](NOTES-PERL.md))
+ * an ANSI C compiler
+ * a development environment in the form of development libraries and C
+   header files
+ * a supported operating system
+
+
+In addition to the requirements and instructions listed in INSTALL.md,
+these are required as well:
+
+### Perl
+
+We recommend Strawberry Perl, available from <http://strawberryperl.com/>
+Please read NOTES.PERL for more information, including the use of CPAN.
+An alternative is ActiveState Perl, <https://www.activestate.com/ActivePerl>
+for which you may need to explicitly build the Perl module Win32/Console.pm
+via <https://platform.activestate.com/ActiveState> and then download it.
+
+### Microsoft Visual C compiler.
+
+Since these are proprietary and ever-changing we cannot test them all.
+Older versions may not work. Use a recent version wherever possible.
+
+### Netwide Assembler (NASM)
+
+NASM is the only supported assembler. It is available from <https://www.nasm.us>.
+
+Quick start
+-----------
+
+ 1. Install Perl
+
+ 2. Install NASM
+
+ 3. Make sure both Perl and NASM are on your %PATH%
+
+ 4. Use Visual Studio Developer Command Prompt with administrative privileges,
+    choosing one of its variants depending on the intended architecture.
+    Or run "cmd" and execute "vcvarsall.bat" with one of the options x86,
+    x86_amd64, x86_arm, x86_arm64, amd64, amd64_x86, amd64_arm, or amd64_arm64.
+    This sets up the environment variables needed for nmake.exe, cl.exe, etc.
+    See also
+    <https://docs.microsoft.com/cpp/build/building-on-the-command-line>
+
+ 5. From the root of the OpenSSL source directory enter
+    perl Configure VC-WIN32    if you want 32-bit OpenSSL or
+    perl Configure VC-WIN64A   if you want 64-bit OpenSSL or
+    perl Configure             to let Configure figure out the platform
+
+ 6. nmake
+
+ 7. nmake test
+
+ 8. nmake install
+
+For the full installation instructions, or if anything goes wrong at any stage,
+check the INSTALL.md file.
+
+Installation directories
+------------------------
+
+The default installation directories are derived from environment
+variables.
+
+For VC-WIN32, the following defaults are use:
+
+    PREFIX:      %ProgramFiles(x86)%\OpenSSL
+    OPENSSLDIR:  %CommonProgramFiles(x86)%\SSL
+
+For VC-WIN64, the following defaults are use:
+
+    PREFIX:      %ProgramW6432%\OpenSSL
+    OPENSSLDIR:  %CommonProgramW6432%\SSL
+
+Should those environment variables not exist (on a pure Win32
+installation for examples), these fallbacks are used:
+
+    PREFIX:      %ProgramFiles%\OpenSSL
+    OPENSSLDIR:  %CommonProgramFiles%\SSL
+
+ALSO NOTE that those directories are usually write protected, even if
+your account is in the Administrators group.  To work around that,
+start the command prompt by right-clicking on it and choosing "Run as
+Administrator" before running 'nmake install'.  The other solution
+is, of course, to choose a different set of directories by using
+--prefix and --openssldir when configuring.
