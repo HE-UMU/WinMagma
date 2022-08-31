@@ -1,0 +1,18 @@
+INSTRUCTIONS TO BUILD SQLITE3 
+
+(**We assume that you have run apply_patches.sh before proceeding to build libraries**)
+
+
+1. Run developer command prompt for vs 2017.
+ 
+2.  In the winmagma\workloads\sqlite3 run following commands:
+
+      mkdir bld
+      cd bld
+      nmake /f ..\repo\Makefile.msc TOP=..\repo
+      nmake /f ..\repo\Makefile.msc sqlite3.c TOP=..\repo
+      nmake /f ..\repo\Makefile.msc sqlite3.dll TOP=..\repo
+      nmake /f ..\repo\Makefile.msc sqlite3.exe TOP=..\repo
+    
+ 3. Binaries are available in the build folder.   
+      

@@ -1,0 +1,22 @@
+
+INSTRUCTIONS TO BUILD LIBPNG WITH ZLIB
+
+(**We assume that you have run apply_patches.sh before proceeding to build libraries**)
+
+Please follow these steps.
+
+1. In the commandline run the following commands as administrator.
+
+a- Set path="C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64";%path%
+b- cd "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin"
+c- vcvars32.bat
+
+2- In the zlib folder, run the following command in the x86 Native Tools command prompt for VS 2017.
+
+	nmake -f win32/Makefile.msc LOC="-DASMV -DASMINF" OBJA="match686.obj inffas32.obj" 
+
+3- Finally, run the following command in the repo directory
+
+	nmake /f scripts\makefile.vcwin32
+
+

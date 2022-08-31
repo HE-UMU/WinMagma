@@ -1,0 +1,23 @@
+INSTRUCTIONS TO BUILD LIBSNDFILE
+
+(**We assume that you have run apply_patches.sh before proceeding to build libraries**)
+
+
+1- Install the required packages using vcpkg:
+
+	vcpkg install libogg:x86-windows-static
+	vcpkg install mpg123:x86-windows-static
+	vcpkg install libvorbis:x86-windows-static
+	vcpkg install libflac:x86-windows-static
+	vcpkg install mp3lame:x86-windows-static
+	vcpkg install mpg123:x86-windows-static
+
+2- Move to libsndfile repo and run the following commands.
+	
+cd repo 
+mkdir CmakeBuild
+cd CmakeBuild
+cmake cmake --install-prefix=C:\WinMagma\workloads\libsndfile\repo -B Nmakebuild -S .. -DCMAKE_TOOLCHAIN_FILE=C:\dev\vcpkg\scripts\buildsystems\vcpkg.cmake -A=win32 -DVCPKG_TARGET_TRIPLET=x86-windows
+cd NmakeBuild
+cmake --build .
+

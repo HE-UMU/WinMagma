@@ -1,0 +1,28 @@
+INSTRUCTIONS TO BUILD SQLITE3 
+
+(**We assume that you have run apply_patches.sh before proceeding to build libraries**)
+
+
+1- Launch Visual Studio 2017 Developer commands line and navigate to the WinMagma/workloads/php folder. There run the following commands:
+
+  git clone https://github.com/php/php-sdk-binary-tools php-sdk
+  cd php-sdk
+  phpsdk-vc14-x86.bat
+  
+2- Navigate to php/repo directory and run the following command:
+  	
+	buildconf 
+  
+3- Run the following command to configure the build.
+
+Configure --disable-all --enable-exif --enable-phar --enable-intl --enable-mbstring --without-pcre-jit --disable-phpdbg --disable-cgi --enable-cli-win32
+  
+4- Run the following command to build. 
+
+nmake 
+
+The binaries are in the Release_TS folder
+
+
+
+

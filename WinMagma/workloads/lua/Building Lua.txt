@@ -1,0 +1,23 @@
+1- Launch x86 Native Tools Command Prompt for VS2019
+
+2- Navigate to WinMagma\workloads\lua\repo
+
+3- Make the build32 directory using the following command
+    mkdir build32
+    
+4- Go to buil32 directory and compile lua files using the following commands
+
+  cd build32
+  cl ..\lua.c ..\lapi.c ..\lcode.c ..\lctype.c ..\ldebug.c ..\ldo.c ..\ldump.c ..\lfunc.c ..\lgc.c ..\llex.c ..\lmem.c ..\lobject.c ..\lopcodes.c ..\lparser.c ..\lstate.c ..\lstring.c ..\ltable.c ..\ltm.c ..\lundump.c ..\lvm.c ..\lzio.c ..\lauxlib.c ..\lbaselib.c ..\lcorolib.c ..\ldblib.c ..\liolib.c ..\lmathlib.c ..\loadlib.c ..\loslib.c ..\lstrlib.c ..\ltablib.c ..\lutf8lib.c ..\linit.c /link /machine:ix86
+
+5- Run the following command to build static library.
+
+  lib /out:lua.lib lapi.obj lcode.obj lctype.obj ldebug.obj ldo.obj ldump.obj lfunc.obj lgc.obj llex.obj lmem.obj lobject.obj lopcodes.obj lparser.obj lstate.obj lstring.obj ltable.obj ltm.obj lundump.obj lvm.obj lzio.obj lauxlib.obj lbaselib.obj lcorolib.obj ldblib.obj liolib.obj lmathlib.obj loadlib.obj loslib.obj lstrlib.obj ltablib.obj lutf8lib.obj linit.obj
+ 
+6- Use the following command to build a dll.
+
+link /dll /out:lua.dll lapi.obj lcode.obj lctype.obj ldebug.obj ldo.obj ldump.obj lfunc.obj lgc.obj llex.obj lmem.obj lobject.obj lopcodes.obj lparser.obj lstate.obj lstring.obj ltable.obj ltm.obj lundump.obj lvm.obj lzio.obj lauxlib.obj lbaselib.obj lcorolib.obj ldblib.obj liolib.obj lmathlib.obj loadlib.obj loslib.obj lstrlib.obj ltablib.obj lutf8lib.obj linit.obj
+
+7- You are good to go. Lua.exe. lua.lib and lua.dll are placed in build32 folder.
+
+

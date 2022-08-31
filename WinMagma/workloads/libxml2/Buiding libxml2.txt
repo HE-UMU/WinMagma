@@ -1,0 +1,25 @@
+INSTRUCTIONS TO BUILD LIBXML2
+
+
+(**We assume that you have run apply_patches.sh before proceeding to build libraries**)
+
+
+1- Copy opt folder in the dependencies to C root.
+ 
+2- In x86 Native tools Command Prompt for VS 2017 (in Administrative mode), CD to win32 folder in libxml2 repository.
+ 
+3- In the win32 folder run the following command
+ 
+    cscript configure.js help
+
+
+4- Configure libxml build using the following command:
+
+cscript configure.js compiler=msvc include=C:\opt\include lib=C:\opt\lib static=yes debug=yes http=no lzma=yes iconv=no 
+
+5- For compiling use the following command:
+
+  nmake /f Makefile.msvc
+
+6- You are DONE. output should be available in bin.msvc folder in win32 folder.
+

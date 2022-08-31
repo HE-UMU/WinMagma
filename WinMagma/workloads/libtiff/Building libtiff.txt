@@ -1,0 +1,46 @@
+INSTRUCTIONS TO BUILD LIBTIFF 
+
+(**We assume that you have run apply_patches.sh before proceeding to build libraries**)
+
+1- Install vcpkg and configure for use with Visual studio
+
+Step 1: Clone the vcpkg repo in in C:\dev\vcpkg (recommended path to avoid path issues)
+
+git clone https://github.com/Microsoft/vcpkg.git
+
+Step 2: Run the bootstrap script to build vcpkg
+
+.\vcpkg\bootstrap-vcpkg.bat
+
+***Using vcpkg with MSBuild / Visual Studio (may require elevation)
+	vcpkg integrate install
+
+2- install libjpeg-turbo using in the vcpkg 
+
+.\vcpkg install libjpeg-turbo
+.\vcpkg install zlib
+.\vcpkg install lzma 
+
+4- Download Open Glut from https://www.opengl.org/resources/libraries/glut/glutdlls37beta.zip
+
+	a-unzip the folder it contains lib, dll and header files.
+	b- copy the glut32.lib to C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\lib\x86
+	c- copy glut.lib to C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\lib\x64
+	d- Paste glut.dll and glut32.dll in C:\Windows\SysWOW64.
+	e- Copy glut32.dll to C:\Windows\System32.
+
+4- Move to repo directory for libtiff.
+
+5- make directory to contain build files e.g.
+
+mkdir build 
+
+6- Move to the build directory (cd build) and run the following command
+
+cmake --install-prefix=C:\WinMagma\workloads\libtiff\install -B Nmakebuild -S . -DCMAKE_TOOLCHAIN_FILE=C:\dev\vcpkg\scripts\buildsystems\vcpkg.cmake -A=win32
+
+7- It will create visual studio 2019 projecct for libtiff. Open using VS 2019. 
+
+8- For tiffgt project go to project properties. In the linker section, go to advanced tab and set the image has safe exception handlers option's value to No(/SAFESEH:NO).
+
+9- Build the solution. 
