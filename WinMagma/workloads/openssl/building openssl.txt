@@ -62,6 +62,9 @@ Quick start
     perl Configure VC-WIN64A   if you want 64-bit OpenSSL or
     perl Configure             to let Configure figure out the platform
 
+perl Configure enable-fuzz-afl disable-tests -DPEDANTIC -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION no-shared enable-tls1_3 enable-rc5 enable-md2 enable-ssl3 enable-ssl3-method enable-nextprotoneg enable-weak-ssl-ciphers --prefix=E:\WinMagma\workloads\openssl\repo --openssldir=ssl include=C:\opt\include lib=C:\opt\lib 
+
+
  6. nmake
 
  7. nmake test
